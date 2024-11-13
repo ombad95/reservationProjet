@@ -1,4 +1,4 @@
-package com.SiteReservation.ProjetSpringBootReservation.config;
+package be.iccbxl.pid.reservationsspringboot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
