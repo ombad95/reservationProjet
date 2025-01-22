@@ -28,7 +28,7 @@ public class Artist {
 
     private String lastname;
 
-    protected Artist() {}
+    public Artist() {}
 
     public Artist(String firstname, String lastname) {
         this.firstname = firstname;
