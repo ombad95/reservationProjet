@@ -1,4 +1,4 @@
-package be.iccbxl.pid.reservationsspringboot.config;
+package be.iccbxl.pid.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import be.iccbxl.pid.reservationsspringboot.model.User;
-import be.iccbxl.pid.reservationsspringboot.repository.UserRepository;
+import be.iccbxl.pid.model.User;
+import be.iccbxl.pid.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

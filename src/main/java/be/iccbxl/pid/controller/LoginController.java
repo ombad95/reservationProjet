@@ -1,4 +1,4 @@
-package be.iccbxl.pid.reservationsspringboot.controller;
+package be.iccbxl.pid.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

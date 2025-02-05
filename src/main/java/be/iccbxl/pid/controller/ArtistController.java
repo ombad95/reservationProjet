@@ -1,4 +1,4 @@
-package be.iccbxl.pid.reservationsspringboot.controller;
+package be.iccbxl.pid.controller;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import be.iccbxl.pid.reservationsspringboot.model.Artist;
-import be.iccbxl.pid.reservationsspringboot.service.ArtistService;
+import be.iccbxl.pid.model.Artist;
+import be.iccbxl.pid.service.ArtistService;
 import jakarta.servlet.http.HttpServletRequest;
 
 

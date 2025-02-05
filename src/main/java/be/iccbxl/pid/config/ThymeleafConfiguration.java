@@ -1,4 +1,4 @@
-package be.iccbxl.pid.reservationsspringboot.config;
+package be.iccbxl.pid.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package be.iccbxl.pid.reservationsspringboot.service;
+package be.iccbxl.pid.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import be.iccbxl.pid.reservationsspringboot.model.User;
-import be.iccbxl.pid.reservationsspringboot.repository.UserRepository;
+import be.iccbxl.pid.model.User;
+import be.iccbxl.pid.repository.UserRepository;
 
 @Service
 public class UserService {
