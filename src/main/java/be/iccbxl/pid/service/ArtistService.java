@@ -1,10 +1,10 @@
-package be.iccbxl.pid.reservationsspringboot.service;
+package be.iccbxl.pid.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import be.iccbxl.pid.reservationsspringboot.model.Artist;
-import be.iccbxl.pid.reservationsspringboot.repository.ArtistRepository;
+import be.iccbxl.pid.model.Artist;
+import be.iccbxl.pid.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

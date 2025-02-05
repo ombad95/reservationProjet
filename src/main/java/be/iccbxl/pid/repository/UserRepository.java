@@ -1,10 +1,10 @@
-package be.iccbxl.pid.reservationsspringboot.repository;
+package be.iccbxl.pid.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import be.iccbxl.pid.reservationsspringboot.model.User;
+import be.iccbxl.pid.model.User;
 
 public interface UserRepository extends CrudRepository<User,Long> {
     User findByLogin(String login);
