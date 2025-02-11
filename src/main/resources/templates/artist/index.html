@@ -6,6 +6,7 @@
 </head>
 <body>
 <div class="container">
+    <div id="notification" th:replace="~{main :: notification}"></div>
     <div layout:fragment="content">
         <h1 th:text="${title}">Liste des artistes</h1>
 
@@ -30,10 +31,7 @@
                 <td>
                     <form th:id="|deleteForm-${artist.id}|"
                           th:action="@{/artists/{id}(id=${artist.id})}" th:method="delete">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-
-                        <a href="#"
-                           th:onclick="|if(confirm('Confirm delete artist #${artist.id}'))
+                        <a href="#" th:onclick="|if(confirm('Confirm delete artist #${artist.id}'))
 	                    		document.getElementById('deleteForm-${artist.id}').submit();
 	                    		return false;|">Delete</a>
                     </form>
@@ -45,5 +43,3 @@
 </div>
 </body>
 </html>
-
-

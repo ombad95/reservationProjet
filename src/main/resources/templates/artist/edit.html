@@ -9,26 +9,25 @@
 </head>
 <body>
 <div class="container">
+
+    <div id="notification" th:replace="~{main :: notification}"></div>
     <div layout:fragment="content">
         <h1 th:text="|${artist.firstname}  ${artist.lastname}|">Bob Sull</h1>
 
-        <form th:action="@{/artists/{id}/edit(id=${artist.id})}" th:object="${artist}" method="post">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <input type="hidden" name="_method" value="put" />
-            <input type="hidden" name="_method" value="put" />
+        <form th:action="@{/artists/{id}/edit(id=${artist.id})}" th:object="${artist}" th:method="put">
             <div>
                 <label>Id:</label>
                 <span th:text="${artist.id}">1</span>
             </div>
             <div>
                 <label>Firstname:</label>
-                <input type="text" th:field="*{firstname}">
+                <input type="text" th:field="*{firstname}" maxlength="60" required>
                 <p th:if="${#fields.hasErrors('firstname')}"
                    th:errors="*{firstname}" th:errorclass="fieldError"></p>
             </div>
             <div>
                 <label>Lastname:</label>
-                <input type="text" th:field="*{lastname}">
+                <input type="text" th:field="*{lastname}" maxlength="60" required>
                 <p th:if="${#fields.hasErrors('lastname')}"
                    th:errors="*{lastname}" th:errorclass="fieldError"></p>
             </div>
