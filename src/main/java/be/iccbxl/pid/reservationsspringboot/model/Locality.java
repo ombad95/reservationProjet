@@ -1,11 +1,13 @@
 package be.iccbxl.pid.reservationsspringboot.model;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.Setter;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import javax.xml.stream.Location;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -14,10 +16,15 @@ public class Locality {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+    @Setter
     private String postalCode;
+    @Setter
     private String locality;
 
-    protected Locality() {	}
+    @OneToMany( targetEntity=Location.class, mappedBy="locality" )
+    private List<Location> locations = new ArrayList<>();
+
+    protected Locality() { }
 
     public Locality(String postalCode, String locality) {
         this.postalCode = postalCode;
@@ -32,16 +39,32 @@ public class Locality {
         return postalCode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
     public String getLocality() {
         return locality;
     }
 
-    public void setLocality(String locality) {
-        this.locality = locality;
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public Locality addLocation(Location location) {
+        if(!this.locations.contains(location)) {
+            this.locations.add(location);
+            location.setLocality(this);
+        }
+
+        return this;
+    }
+
+    public Locality removeLocation(Location location) {
+        if(this.locations.contains(location)) {
+            this.locations.remove(location);
+            if(location.getLocality().equals(this)) {
+                location.setLocality(null);
+            }
+        }
+
+        return this;
     }
 
     @Override
@@ -50,4 +73,3 @@ public class Locality {
     }
 
 }
-
