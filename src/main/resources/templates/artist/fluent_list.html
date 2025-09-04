@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Artistes parlant couramment une langue</title>
+</head>
+<body>
+<div layout:fragment="content" class="max-w-4xl mx-auto px-6 py-8">
+    <div class="bg-white border rounded shadow p-6">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-6"
+            th:text="'Artistes parlant couramment ' + ${language}">
+            Artistes parlant couramment Anglais
+        </h1>
+
+        <div th:if="${#lists.isEmpty(artists)}" class="text-gray-500 italic">
+            Aucun artiste ne parle couramment cette langue.
+        </div>
+
+        <ul th:unless="${#lists.isEmpty(artists)}" class="space-y-3">
+            <li th:each="artist : ${artists}"
+                class="p-3 border rounded hover:bg-gray-50">
+                <a th:href="@{/artists/{id}(id=${artist.id})}"
+                   class="text-blue-600 hover:underline font-medium"
+                   th:text="${artist.firstname + ' ' + artist.lastname}">
+                    Jean Dupont
+                </a>
+            </li>
+        </ul>
+
+        <div class="mt-6">
+            <a th:href="@{/artists}"
+               class="text-sm text-blue-600 hover:underline">&larr; Retour à la liste des artistes</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

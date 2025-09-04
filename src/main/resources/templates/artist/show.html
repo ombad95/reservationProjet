@@ -2,7 +2,7 @@
 <html lang="fr" xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 <head>
-    <title>Fiche d’un artiste</title>
+    <title>Fiche d'un artiste</title>
 </head>
 <body>
 <div class="max-w-3xl mx-auto px-6 py-8">
@@ -37,6 +37,64 @@
                 <p th:if="${#lists.isEmpty(artist.types)}" class="text-gray-500 italic">
                     Aucun type associé à cet artiste.
                 </p>
+            </div>
+
+
+            <div th:if="${isComedian}" class="mt-6">
+                <h2 class="text-lg font-medium text-gray-700 mb-2">Langues parlées :</h2>
+
+                <div th:if="${#lists.isEmpty(artistLanguages)}" class="text-gray-500 italic">
+                    Aucune langue enregistrée pour cet artiste.
+                </div>
+
+                <ul th:unless="${#lists.isEmpty(artistLanguages)}" class="space-y-2">
+                    <li th:each="al : ${artistLanguages}"
+                        class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                        <span>
+                            <strong th:text="${al.language.language}">Anglais</strong> -
+                            <span th:text="${al.level.displayName}">Courant</span>
+                        </span>
+                        <form th:if="${isAdmin}"
+                              th:action="@{/artists/{id}/remove-language/{langId}(id=${artist.id}, langId=${al.language.id})}"
+                              method="post" class="inline">
+                            <button type="submit" class="text-red-600 hover:text-red-800 text-sm">
+                                Supprimer
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+
+                <div th:if="${isAdmin}" class="mt-4 p-4 bg-gray-50 rounded">
+                    <h3 class="text-md font-medium text-gray-700 mb-3">Ajouter une langue</h3>
+                    <form th:action="@{/artists/{id}/add-language(id=${artist.id})}" method="post">
+                        <div class="flex gap-2 items-end">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Langue</label>
+                                <select name="languageId" class="border rounded p-2 w-48" required>
+                                    <option value="">Choisir une langue</option>
+                                    <option th:each="lang : ${language}"
+                                            th:value="${lang.id}"
+                                            th:text="${lang.language}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Niveau</label>
+                                <select name="level" class="border rounded p-2 w-32" required>
+                                    <option th:each="lvl : ${levels}"
+                                            th:value="${lvl}"
+                                            th:text="${lvl.displayName}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                                Ajouter
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div class="mt-6">
